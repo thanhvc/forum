@@ -16,7 +16,6 @@
  */
 package org.exoplatform.forum.create;
 
-import org.exoplatform.forum.common.webui.UIForumFilter;
 import org.exoplatform.webui.config.annotation.ComponentConfig;
 import org.exoplatform.webui.config.annotation.EventConfig;
 import org.exoplatform.webui.core.lifecycle.UIFormLifecycle;
@@ -49,19 +48,7 @@ public class UICreatePoll extends UICreateForm {
   static public class OnChangeLocalActionListener extends EventListener<UICreatePoll> {
 
     public void execute(Event<UICreatePoll> event) throws Exception {
-      UICreatePoll createPoll = event.getSource();
-      String location = createPoll.getUIFormScrollSelectBox(LOCATION_SELECT_BOX).getValue();
-      createPoll.isStepOne = createPoll.allPortalNames.contains(location);
-      if(createPoll.isStepOne) {
-        nextAction(createPoll, ACTION_TYPE.CREATE_POLL, event.getRequestContext());
-      } else {
-        UIForumFilter forumFilter = createPoll.getUIForumFilter(FORUM_SELECT_BOX);
-        if(forumFilter != null){
-          forumFilter.setRendered(false);
-        }
-        createPoll.hasNext = true;
-        event.getRequestContext().addUIComponentToUpdateByAjax(createPoll);
-      }
+      
     }
   }
 
